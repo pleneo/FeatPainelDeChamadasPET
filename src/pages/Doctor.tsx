@@ -372,7 +372,7 @@ const handleAbandonConsultation = async (patientId: string) => {
                         {/* <Button variant="outline" onClick={() => setSelectedPatientId(null)}>
                           Cancel
                         </Button> */}
-                        
+
                         {activePatient && calledPatientIds.has(activePatient.id) ? (
                           <Button onClick={handleRecallPatient} disabled={!activePatient} variant="secondary">
                             Chamar novamente
@@ -383,7 +383,7 @@ const handleAbandonConsultation = async (patientId: string) => {
                           </Button>
                         )}
 
-                        <Button    
+                        <Button
                           onClick={() => {
                             setPatientToAbandon(activePatient);
                             setConfirmAbandonOpen(true);
