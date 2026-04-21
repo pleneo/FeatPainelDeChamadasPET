@@ -26,8 +26,6 @@ export default function Doctor() {
   const [patientToFinish, setPatientToFinish] = useState<any | null>(null);
   const [confirmAbandonOpen, setConfirmAbandonOpen] = useState(false);
   const [patientToAbandon, setPatientToAbandon] = useState<any | null>(null);
-  
-  // Variável adicionada pela equipe (tempo excedido)
   const [now, setNow] = useState(Date.now());
 
   // LÓGICA ATUALIZADA (Sua): Puxa do sessionStorage (se existir) para não perder ao trocar de tela
@@ -70,7 +68,7 @@ export default function Doctor() {
   try {
     await callForDoctor(activePatient.id, room);
     setActivePatientId(activePatient.id);
-    
+
     // LÓGICA ATUALIZADA: Registra que o paciente já foi chamado e salva no navegador
     setCalledPatientIds(prev => {
       const updatedSet = new Set(prev).add(activePatient.id);
@@ -95,12 +93,9 @@ export default function Doctor() {
 };
 
 const handleRecallPatient = async () => {
-  if (!activePatient || !room) return; 
+  if (!activePatient || !room) return;
 
   try {
-    console.log("Rechamando paciente:", activePatient);
-    
-    
     await recallPatient(activePatient.id, room);
 
     toast({
@@ -377,7 +372,7 @@ const handleAbandonConsultation = async (patientId: string) => {
                         {/* <Button variant="outline" onClick={() => setSelectedPatientId(null)}>
                           Cancel
                         </Button> */}
-                        
+
                         {activePatient && calledPatientIds.has(activePatient.id) ? (
                           <Button onClick={handleRecallPatient} disabled={!activePatient} variant="secondary">
                             Chamar novamente
@@ -388,7 +383,7 @@ const handleAbandonConsultation = async (patientId: string) => {
                           </Button>
                         )}
 
-                        <Button    
+                        <Button
                           onClick={() => {
                             setPatientToAbandon(activePatient);
                             setConfirmAbandonOpen(true);
